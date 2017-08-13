@@ -1,16 +1,13 @@
-angular.module('todoController', [])
-
-	// inject the Todo service factory into our controller
-	.controller('mainController', ['$scope','$http','Todos', function($scope, $http, Todos) {
+hypatiaApp.controller('mainController', ['$scope','$http','TodoService', function($scope, $http, TodoService) {
 		$scope.formData = {};
 		$scope.loading = true;
 
 		// GET =====================================================================
 		// when landing on the page, get all todos and show them
 		// use the service to get all the todos
-		Todos.get()
-			.success(function(data) {
-				$scope.todos = data;
+		TodoService.get()
+			.then(function(response) {
+				$scope.todos = response.data;
 				$scope.loading = false;
 			});
 
@@ -24,13 +21,13 @@ angular.module('todoController', [])
 				$scope.loading = true;
 
 				// call the create function from our service (returns a promise object)
-				Todos.create($scope.formData)
+				TodoService.create($scope.formData)
 
 					// if successful creation, call our get function to get all the new todos
-					.success(function(data) {
+					.then(function(response) {
 						$scope.loading = false;
 						$scope.formData = {}; // clear the form so our user is ready to enter another
-						$scope.todos = data; // assign our new list of todos
+						$scope.todos = response.data; // assign our new list of todos
 					});
 			}
 		};
@@ -40,11 +37,11 @@ angular.module('todoController', [])
 		$scope.deleteTodo = function(id) {
 			$scope.loading = true;
 
-			Todos.delete(id)
+			TodoService.delete(id)
 				// if successful creation, call our get function to get all the new todos
-				.success(function(data) {
+				.then(function(response) {
 					$scope.loading = false;
-					$scope.todos = data; // assign our new list of todos
+					$scope.todos = response.data; // assign our new list of todos
 				});
 		};
 	}]);
