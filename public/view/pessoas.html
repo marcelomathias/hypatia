@@ -1,0 +1,41 @@
+<div class="container" ng-controller="pessoaController">
+	<!-- HEADER  -->
+	<div class="jumbotron text-center">
+		<h1>Cadastro Pessoas</h1>
+	</div>
+
+<P>
+    <a ui-sref="cadastroNovaPessoa" class="btn btn-primary">Cadastrar</a>
+</P>
+
+<p class="text-center" ng-show="loading">
+    <span class="fa fa-spinner fa-spin fa-3x"></span>
+</p>
+
+
+<p>Contatos cadastrados: {{lista.length}}</p>
+<div class="table-responsive">
+<table class="table table-hover">
+<tr>
+<th>NOME</th>
+<th>E-MAIL</th>
+<th class="text-center">Ação</th>
+</tr>
+<tr ng-repeat="reg in lista">
+    <td>
+        <A ui-sref="cadastroPessoa({id: reg._id})">{{reg.nome}}</A>
+    </td>
+    <td>
+        {{reg.email}}
+    </td>
+    <td class="text-center">
+    <button class="btn btn-warning">
+    Remover
+    </button>
+    </td>
+</tr>
+</table>
+</div>
+
+
+</div>

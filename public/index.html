@@ -31,28 +31,16 @@
 	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script><!-- load angular -->
 	<script src="//ajax.googleapis.com/ajax/libs/angular-ui-router/1.0.0-rc.1/angular-ui-router.min.js"></script>
 
-	<script src="js/core.js"></script> <!-- load our main application -->
-	<script src="js/controllers/main.js"></script> <!-- load up our controller -->
-	<script src="js/services/todos.js"></script> <!-- load our todo service -->
+	<script src="js/core.js"></script>
+	<script src="js/services/todos.js"></script>
+	<script src="js/services/pessoas.js"></script>
+	<script src="js/controllers/main.js"></script>
+	<script src="js/controllers/cadastroPessoa.js"></script>
 
 </head>
 <!-- SET THE CONTROLLER -->
 <body>
-<!--
-		<nav class="navbar navbar-light" role="navigation">
-			<div class="navbar-header">
-				<a class="navbar-brand" ui-sref="#">Hypatia</a>
-			</div>
-			<ul class="nav navbar-nav">
-				<li><a ui-sref="home">Home</a></li>
-				<li><a ui-sref="admin" class="dropdown-toggle">Admin</a></li>
-				<ul>
-					<a ui-sref="admin/alunos">Alunos</a>
-				</ul>
-			</ul>
-		</nav>
-		-->
-		    <!-- Fixed navbar -->
+	
     <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
@@ -71,8 +59,8 @@
             <li class="dropdown">
               <a  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin <span class="caret"></span></a>
               <ul class="dropdown-menu">
+                <li ui-sref-active="active"><a ui-sref="cadastroPessoas">Pessoas</a></li>
                 <li><a href="#">Alunos</a></li>
-                <li><a href="#">Professores</a></li>
                 <li><a href="#">Turmas</a></li>
 				<!--
                 <li role="separator" class="divider"></li>

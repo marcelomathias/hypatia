@@ -1,0 +1,30 @@
+<div class="container" ng-controller="pessoaController">
+	<!-- HEADER  -->
+	<div class="jumbotron text-center">
+		<h1>Cadastrar Pessoas</h1>
+	</div>
+
+<form ng-submit="salva()">
+
+	<p ng-show="mensagem.texto">
+	{{mensagem.texto}}
+	</p>
+	<form>
+		<div class="form-group">
+			<label for="nome">Nome completo</label>
+			<input type="text" class="form-control" id="nome" name="nome" required ng-model="registro.nome">
+		</div>
+		<div class="form-group">
+			<label for="email">Email</label>
+			<div class="input-group">
+				<span class="input-group-addon">@</span>
+				<input type="email" class="form-control" id="email" placeholder="email@exemplo.com" name="email" ng-model="registro.email" required>
+			</div>
+		</div>
+		<div>
+			<button type="submit" class="btn btn-primary">Salvar</button>
+			<a ui-sref="cadastroPessoas" class="btn btn-default">Voltar</a>
+		</div>
+	</form>
+		
+</div>

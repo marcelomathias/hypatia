@@ -1,4 +1,5 @@
 var Todo = require('./models/todo');
+var Pessoa = require('./models/pessoa');
 
 function getTodos(res){
 	Todo.find(function(err, todos) {
@@ -10,6 +11,18 @@ function getTodos(res){
 			res.json(todos); // return all todos in JSON format
 		});
 };
+
+function getPessoas(res) {
+	Pessoa.find(function(err, pessoas) {
+
+		if (err)
+			res.send(err)
+
+		res.json(pessoas);
+
+	});
+
+}
 
 module.exports = function(app) {
 
@@ -49,6 +62,45 @@ module.exports = function(app) {
 			getTodos(res);
 		});
 	});
+
+
+
+	app.get('/api/pessoas', function(req, res) {
+
+		// use mongoose to get all todos in the database
+		getPessoas(res);
+	});
+
+
+	app.get('/api/pessoa/:pessoa_id', function(req, res) {
+		
+		Pessoa.findOne({ _id : req.params.pessoa_id }, function(err, pessoa) {
+			if (err)
+				res.send(err);
+
+			console.log(pessoa);
+
+			res.json(pessoa);
+		});
+
+	});
+
+	app.post('/api/pessoas', function(req, res) {
+
+		// create a todo, information comes from AJAX request from Angular
+		Pessoa.create({
+			nome : req.body.nome,
+			email : req.body.email
+		}, function(err, todo) {
+			if (err)
+				res.send(err);
+
+			// get and return all the todos after you create another
+			getPessoas(res);
+		});
+
+	});
+
 
 	// application -------------------------------------------------------------
 	app.get('*', function(req, res) {
