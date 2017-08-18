@@ -78,28 +78,58 @@ module.exports = function(app) {
 			if (err)
 				res.send(err);
 
-			console.log(pessoa);
-
 			res.json(pessoa);
 		});
 
 	});
 
-	app.post('/api/pessoas', function(req, res) {
+	app.post('/api/pessoa', function(req, res) {
 
-		// create a todo, information comes from AJAX request from Angular
-		Pessoa.create({
-			nome : req.body.nome,
-			email : req.body.email
+		if (req.body._id == null) {
+
+			// create a todo, information comes from AJAX request from Angular
+			Pessoa.create({
+				nome : req.body.nome,
+				email : req.body.email
+			}, function(err, pessoa) {
+				if (err)
+					res.send(err);
+
+				pessoa
+			});
+
+		} else {
+
+			// create a todo, information comes from AJAX request from Angular
+			Pessoa.update({
+				nome : req.body.nome,
+				email : req.body.email
+			}, function(err, pessoa) {
+				if (err)
+					res.send(err);
+				pessoa
+			});
+
+
+		}
+
+	});
+
+
+
+	// delete a todo
+	app.delete('/api/pessoa/:pessoa_id', function(req, res) {
+		Pessoa.remove({
+			_id : req.params.pessoa_id
 		}, function(err, todo) {
 			if (err)
 				res.send(err);
 
-			// get and return all the todos after you create another
 			getPessoas(res);
 		});
-
 	});
+
+
 
 
 	// application -------------------------------------------------------------

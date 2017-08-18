@@ -5,13 +5,16 @@
 	</div>
 
 <P>
-    <a ui-sref="cadastroNovaPessoa" class="btn btn-primary">Cadastrar</a>
+    <a ui-sref="cadastroNovaPessoa" class="btn btn-primary" data-toggle="confirmation">Cadastrar</a>
 </P>
 
 <p class="text-center" ng-show="loading">
     <span class="fa fa-spinner fa-spin fa-3x"></span>
 </p>
 
+	<p ng-show="mensagem.texto">
+	{{mensagem.texto}}
+	</p>
 
 <p>Contatos cadastrados: {{lista.length}}</p>
 <div class="table-responsive">
@@ -29,7 +32,7 @@
         {{reg.email}}
     </td>
     <td class="text-center">
-    <button class="btn btn-warning">
+    <button class="btn btn-warning" ng-click="remover(reg)" data-toggle="confirmation"> 
     Remover
     </button>
     </td>

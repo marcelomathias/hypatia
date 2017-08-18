@@ -6,10 +6,10 @@ hypatiaApp.service('PessoaService', ['$http', function($http) {
 				return $http.get('/api/pessoa/' + id);
 			};
 		this.create = function(todoData) {
-				return $http.post('/api/pessoas', todoData);
+				return $http.post('/api/pessoa', todoData);
 			};
 		this.delete = function(id) {
-				return $http.delete('/api/pessoas/' + id);
+				return $http.delete('/api/pessoa/' + id);
 			};
 			
 	}]);

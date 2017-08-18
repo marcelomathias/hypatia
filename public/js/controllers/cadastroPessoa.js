@@ -23,6 +23,17 @@ hypatiaApp.controller('pessoaController', ['$scope','$http','$stateParams','Pess
     }
 
 
+    $scope.remover=function(registro) {
+        $scope.loading = true;
+
+        PessoaService.delete(registro._id)
+            .then(function(response) {
+                $scope.loading = false;
+                $scope.registro = {};
+                $scope.lista = response.data;
+            });
+    }
+
     $scope.salva=function() {
         $scope.loading = true;
 
@@ -31,8 +42,14 @@ hypatiaApp.controller('pessoaController', ['$scope','$http','$stateParams','Pess
             // if successful creation, call our get function to get all the new todos
             .then(function(response) {
                 $scope.loading = false;
-                $scope.registro = {}; // clear the form so our user is ready to enter another
-                $scope.lista = response.data;
+                $scope.registro = response.data;
+                $scope.mensagem = {texto: 'Pessoa salva com sucesso!'};
             });
     }
+
+
+    $('[data-toggle=confirmation]').confirmation({
+    rootSelector: '[data-toggle=confirmation]',
+    // other options
+    });
 }]);
